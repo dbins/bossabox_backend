@@ -1,0 +1,110 @@
+Dentro da pasta src database
+npx sequelize init
+npx sequelize migration:create --name=create-users
+
+Dentro da pasta src database
+npx sequelize db:migrate
+
+Para executar na raiz do projeto:
+
+********************************************
+docker
+
+Passo a passo do que foi feito.
+
+- Abrir o KITEMATIC ALPHA
+- Clicar no botão Docker CLI localizado na parte inferior esquerda da tela
+- Navegar para a pasta do projecto
+- Executar docker-compose up -d 
+- Para conferir se está funcionando
+docker-ps
+(Verificar a porta)
+- Para conferir os logs dos containers
+docker-compose logs
+- Para atualizações no futuro
+docker-compose build ou
+docker-compose up --build
+- Para parar o container
+docker ps (para ver o container_id)
+docker stop [container_id]
+
+To determine the IP address of a virtual machine that runs docker container, execute the following command:
+
+docker-machine ip default
+
+ healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'mysql --database=$$MYSQL_DATABASE --password=$$MYSQL_ROOT_PASSWORD --execute="SELECT count(table_name) > 0 FROM information_schema.tables;" --skip-column-names -B',
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 4
+
+********************************************
+
+Rotas
+POST /login
+POST /usuario
+GET /tools
+GET /tools/:id
+POST /tools
+PUT /tools/:id
+DELETE /tools/:id
+
+POST http://localhost:3000/login
+
+{
+	"name": "Bins",
+	"email": "bins4@ig.com.br",
+	"password": "123456"
+}
+
+Exemplo retorno:
+{"user":{"id":1,"name":"Bins","email":"bins4@ig.com.br","password_hash":"$2a$08$6YyV8YFCiVJxmZgW4GX6qeFPF.p/8Ey86Tt2A.i8vbS8JKfPtSQjy","createdAt":"2019-05-05T13:50:53.000Z","updatedAt":"2019-05-05T13:50:53.000Z"},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiQmlucyIsImVtYWlsIjoiYmluczRAaWcuY29tLmJyIiwicGFzc3dvcmRfaGFzaCI6IiQyYSQwOCQ2WXlWOFlGQ2lWSnhtWmdXNEdYNnFlRlBGLnAvOEV5ODZUdDJBLmk4dmJTOEpLZlB0U1FqeSIsImNyZWF0ZWRBdCI6IjIwMTktMDUtMDVUMTM6NTA6NTMuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMTktMDUtMDVUMTM6NTA6NTMuMDAwWiJ9LCJpYXQiOjE1NTcwNjQ4MTMsImV4cCI6MTU1NzE1MTIxM30.fg-5TWrVVAL1ebeTHDxd4s86z3cyxbWMhIk6aAVOc-o"}
+
+POST http://localhost:3000/usuario
+
+{
+	"name": "Bins",
+	"email": "bins4@ig.com.br",
+	"password": "123456"
+}
+
+
+GET http://localhost:3000/tools
+
+GET http://localhost:3000/tools/1
+
+//Enviar token gerado pela rota de login pelo header Authorization Bearer
+POST http://localhost:3000/tools
+
+{"title": "Teste", "link": "http://www.google.com.br", "description":"Teste do Bins", "tags": ["tag1", "tag2", "tag3"] }
+
+PUT http://localhost:3000/tools/1
+
+{"title": "Teste atualizado", "link": "http://www.google.com.br", "description":"Teste do Bins", "tags": ["tag1", "tag2", "tag3"] }
+
+DELETE http://localhost:3000/tools/1
+
+****************
+
+para testar
+
+a partir da raiz, digitar
+JEST
+
+
+https://eltonminetto.net/post/2017-06-29-definindo-apis-com-api-blueprint/
+npm install -g aglio
+aglio -i api.md --theme-full-width --no-theme-condense -o index.html
+aglio -i api.apib --theme-full-width --no-theme-condense -s
+
+
+npm install -g drakov
+drakov -f api.md -p 4000
+
+npm install -g dredd
+dredd init
+dredd api.md http://localhost:4000
