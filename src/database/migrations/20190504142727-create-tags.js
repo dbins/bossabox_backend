@@ -23,6 +23,9 @@ module.exports = {
       },
       tool_id: {
         type: Sequelize.INTEGER,
+        references: { model: "tools", key: "id" },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
         allowNull: false
       },
       created_at: {

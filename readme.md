@@ -11,16 +11,16 @@ https://github.com/dbins/bossabox_frontend
 
 ## Instalação
 
-- git clone
-- Criar um banco de dados vazio chamado bossabox
-- Editar o arquivo src/config/database.js com o endereço do servidor MySQL e porta
+- git clone https://github.com/dbins/bossabox_backend
+- No servidor de banco de dados MySQL, crie um banco de dados vazio chamado bossabox (CREATE DATABASE bossabox)
+- Edite o arquivo src/config/database.js e informe o endereço do servidor MySQL e porta
 - npm install
 - npm start
 
 
 ## Rotas da API
 
-A documentação da API pode ser consultada na página api.html localizada na raiz do projeto. Abaixo segue um resumo das rotas disponíveis:
+A documentação da API pode ser consultada na página [api.html](api.html) localizada na raiz do projeto. Abaixo segue um resumo das rotas disponíveis:
 
 | Rota       | Método | Descrição                    |
 | ---------- | ------ | ---------------------------- |
