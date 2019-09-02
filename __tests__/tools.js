@@ -108,8 +108,9 @@ describe("UPDATE /tools/1", () => {
         description: "Teste do Bins",
         tags: ["tag1", "tag2", "tag3"]
       });
-    expect(updatedTool.body.message).toBe("Registro atualizado");
-    expect(updatedTool.body.tool).toHaveProperty("id");
+    //expect(updatedTool.body.message).toBe("Registro atualizado");
+    //expect(updatedTool.body.tool).toHaveProperty("id");
+    expect(updatedTool.body).toHaveProperty("id");
     expect(updatedTool.statusCode).toBe(200);
   });
 });

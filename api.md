@@ -11,6 +11,94 @@ API do challenge de backend da BossaBox
 
 API feita com NodeJS + Express + Sequelize com banco de dados MySQL!
 
+# Group Usuario
+
+## Usuario [/usuario]
+
+### Criar Usuario [POST]
+
+- Request (application/json)
+
+   - Attributes (UsuarioCadastro)
+   
+   - Body
+      
+         
+            {
+               "name": "Bins",
+               "email": "bins4@ig.com.br",
+               "password": "123456"
+            }
+
+- Response 200 (application/json; charset=utf-8)
+
+  - Attributes (Usuario)
+  
+  - Body
+      
+            {
+                "id": 1,
+                "name": "Bins",
+                "email": "bins4@ig.com.br",
+                "password_hash":"$2a$08$6YyV8YFCiVJxmZgW4GX6qeFPF.p/8Ey86Tt2A.i8vbS8JKfPtSQjy"
+                "created_at": "2019-05-05T13:50:53.000Z",
+                "updated_at": "2019-05-05T13:50:53.000Z"
+            }   
+  
+- Response 403 (application/json; charset=utf-8)
+
+  - Attributes (Message403)
+  
+  - Body
+         
+            {
+                "message": "Usuário já existe"
+            }   
+  
+## Login [/login]
+
+### Faz o login do usuário, retornando um token [POST]
+
+- Request (application/json)
+
+   - Attributes (UsuarioLogin)
+
+   - Body
+      
+            {
+                "email": "bins4@ig.com.br",
+                "password": "123456"
+            }   
+
+- Response 200 (application/json; charset=utf-8)
+
+   - Attributes (UsuarioLogado)
+  
+   - Body
+  
+                {"user":{"id":1,"name":"Bins","email":"bins4@ig.com.br","password_hash":"$2a$08$6YyV8YFCiVJxmZgW4GX6qeFPF.p/8Ey86Tt2A.i8vbS8JKfPtSQjy","createdAt":"2019-05-05T13:50:53.000Z","updatedAt":"2019-05-05T13:50:53.000Z"},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiQmlucyIsImVtYWlsIjoiYmluczRAaWcuY29tLmJyIiwicGFzc3dvcmRfaGFzaCI6IiQyYSQwOCQ2WXlWOFlGQ2lWSnhtWmdXNEdYNnFlRlBGLnAvOEV5ODZUdDJBLmk4dmJTOEpLZlB0U1FqeSIsImNyZWF0ZWRBdCI6IjIwMTktMDUtMDVUMTM6NTA6NTMuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMTktMDUtMDVUMTM6NTA6NTMuMDAwWiJ9LCJpYXQiOjE1NTcwNjQ4MTMsImV4cCI6MTU1NzE1MTIxM30.fg-5TWrVVAL1ebeTHDxd4s86z3cyxbWMhIk6aAVOc-o"}
+  
+- Response 401 (application/json; charset=utf-8)
+
+   - Attributes (Message401)
+  
+   - Body 
+   
+            {
+                "message": "Senha incorreta" 
+            }
+         
+- Response 404 (application/json; charset=utf-8)
+
+   - Attributes (Message404)
+  
+   - Body 
+   
+            {
+                "message": "Usuário não encontrado" 
+            }         
+
+
 # Group Tools
 
 ## Tools [/tools]
@@ -20,261 +108,175 @@ API feita com NodeJS + Express + Sequelize com banco de dados MySQL!
 - Request (application/json)
   
   
-- Response 200 (application/json)
+- Response 200 (application/json; charset=utf-8)
 
   - Attributes (array[ToolResponse])
   
   - Body
   
-			[
-				{
-					"id": 1,
-					"title": "Hello, world!",
-					"link": "Hello, world!",
-					"description": "Hello, world!",
-					"tags": [
-					  "Hello, world!"
-					]
-				},
-				{
-					"id": 2,
-					"title": "Hello, world!",
-					"link": "Hello, world!",
-					"description": "Hello, world!",
-					"tags": [
-					  "Hello, world!", "Hello, world!"
-					]
-				}
-			]
-			
+            [
+            {
+               "id": 1,
+               "title": "Hello, world!",
+               "link": "Hello, world!",
+               "description": "Hello, world!",
+               "tags": [
+                 "Hello, world!"
+               ]
+            },
+            {
+               "id": 2,
+               "title": "Hello, world!",
+               "link": "Hello, world!",
+               "description": "Hello, world!",
+               "tags": [
+                 "Hello, world!", "Hello, world!"
+               ]
+            }
+            ]
+         
 
 ### Criar Tools [POST]
 
 - Request (application/json)
 
-	- Headers
+   - Headers
 
-			Authentication: Bearer JWT
+            Authentication: Bearer JWT
 
-	- Attributes (Tool)
-	
-	- Body
-	
-			{"title": "Teste", "link": "http://www.google.com.br", "description":"Teste do Bins", "tags": ["tag1", "tag2", "tag3"] }
+   - Attributes (Tool)
+   
+   - Body
+   
+            {"title": "Teste", "link": "http://www.google.com.br", "description":"Teste do Bins", "tags": ["tag1", "tag2", "tag3"] }
 
-- Response 200 (application/json)
+- Response 200 (application/json; charset=utf-8)
   
   - Attributes (ToolResponse)
   
   - Body 
   
-			{
-				"id": 1,
-				"title": "Teste do Bins", 
-				"link": "http://www.google.com.br", 
-				"description":"Teste do Bins", 
-				"tags": ["tag1", "tag2", "tag3"] 
-			}
-			
+            {
+            "id": 1,
+            "title": "Teste do Bins", 
+            "link": "http://www.google.com.br", 
+            "description":"Teste do Bins", 
+            "tags": ["tag1", "tag2", "tag3"] 
+            }
+         
 - Response 404 (application/json)
   
   - Attributes (MessageExiste)
   
   - Body
 
-			{"message":"Tool já existe"}
+            {"message":"Tool já existe"}
 
 # Group Tool
 
-## Tool [/tool/{id_tool}]
+## Tool [/tools/{id_tool}]
 
 ### Detalhe Tool [GET]
 
 - Parameters
-		
-	- id_tool: 1 (number, required) - ID da tool
+      
+   - id_tool: 1 (number, required) - ID da tool
 
 - Request (application/json)
-		
-- Response 200 (application/json)
+      
+- Response 200 (application/json; charset=utf-8)
 
   - Attributes (ToolResponse)
   
   - Body 
   
-			{
-				"id": 1,
-				"title": "Teste atualizado, 
-				"link": "http://www.google.com.br", 
-				"description":"Teste do Bins", 
-				"tags": ["tag1", "tag2", "tag3"] 
-			}
+            {
+            "id": 1,
+            "title": "Teste atualizado, 
+            "link": "http://www.google.com.br", 
+            "description":"Teste do Bins", 
+            "tags": ["tag1", "tag2", "tag3"] 
+            }
 
-- Response 404 (application/json)
+- Response 404 (application/json; charset=utf-8)
   
   - Attributes (MessageID)
   
   - Body
 
-			{"message":"ID não localizado"}
-	
+            {"message":"ID não localizado"}
+   
 
 ### Atualizar tool [PUT]
 
 - Parameters
-		
-	- id_tool: 1 (number, required) - ID da tool	
+      
+   - id_tool: 1 (number, required) - ID da tool   
 
 - Request (application/json)
 
-	- Headers
+   - Headers
 
-			Authentication: Bearer JWT
-	
-	
-	
-	- Attributes (Tool)
-	
-	- Body
-			
-			{"title": "Teste atualizado", "link": "http://www.google.com.br", "description":"Teste do Bins", "tags": ["tag1", "tag2", "tag3"] }
+            Authentication: Bearer JWT
+   
+   
+   
+   - Attributes (Tool)
+   
+   - Body
+         
+            {"title": "Teste atualizado", "link": "http://www.google.com.br", "description":"Teste do Bins", "tags": ["tag1", "tag2", "tag3"] }
 
-- Response 200 (application/json)
+- Response 200 (application/json; charset=utf-8)
 
   - Attributes (ToolResponse)
   
   - Body 
   
-			{
-				"id": 1,
-				"title": "Teste atualizado, 
-				"link": "http://www.google.com.br", 
-				"description":"Teste do Bins", 
-				"tags": ["tag1", "tag2", "tag3"] 
-			}
+            {
+                "id": 1,
+                "title": "Teste atualizado, 
+                "link": "http://www.google.com.br", 
+                "description":"Teste do Bins", 
+                "tags": ["tag1", "tag2", "tag3"] 
+            }
 
-- Response 404 (application/json)
+- Response 404 (application/json; charset=utf-8)
   
   - Attributes (MessageID)
   
   - Body
 
-			{"message":"ID não localizado"}
+            {"message":"ID não localizado"}
 
 ### Excluir Tool [DELETE]
 
 - Parameters
-		
-	- id_tool: 1 (number, required) - ID da tool
+      
+   - id_tool: 1 (number, required) - ID da tool
 
 - Request (application/json)
 
-	- Headers
+   - Headers
 
-			Authentication: Bearer JWT
+            Authentication: Bearer JWT
 
-- Response 200 (application/json)
+- Response 200 (application/json; charset=utf-8)
 
-	- Attributes (MessageExcluido)
-	
-	- Body
-			
-			{"message":"Registro excluído"}
-			
-- Response 404 (application/json)
+   - Attributes (MessageExcluido)
+   
+   - Body
+         
+            {"message":"Registro excluído"}
+         
+- Response 404 (application/json; charset=utf-8)
   
   - Attributes (MessageID)
   
   - Body
-		
-			{"message":"ID não localizado"}
+      
+            {"message":"ID não localizado"}
 
-# Group Usuario
-
-## Usuario [/usuario]
-
-### Criar Usuario [POST]
-
-- Request (application/json)
-
-	- Attributes (UsuarioCadastro)
-	
-	- Body
-		
-			
-				{
-					"name": "Bins",
-					"email": "bins4@ig.com.br",
-					"password": "123456"
-				}
-
-- Response 200 (application/json)
-
-  - Attributes (Usuario)
-  
-  - Body
-		
-			{
-				"id": 1,
-				"name": "Bins",
-				"email": "bins4@ig.com.br",
-				"password_hash":"$2a$08$6YyV8YFCiVJxmZgW4GX6qeFPF.p/8Ey86Tt2A.i8vbS8JKfPtSQjy"
-				"created_at": "2019-05-05T13:50:53.000Z",
-				"updated_at": "2019-05-05T13:50:53.000Z"
-			}	
-  
-- Response 403 (application/json)
-
-  - Attributes (Message403)
-  
-  - Body
-			
-			{
-				"message": "Usuário já existe"
-			}	
-  
-## Login [/login]
-
-### Faz o login do usuário, retornando um token [POST]
-
-- Request (application/json)
-
-	- Attributes (UsuarioLogin)
-
-	- Body
-		
-			{
-				"email": "bins4@ig.com.br",
-				"password": "123456"
-			}	
-
-- Response 200 (application/json)
-
-	- Attributes (UsuarioLogado)
-  
-	- Body
-  
-			{"user":{"id":1,"name":"Bins","email":"bins4@ig.com.br","password_hash":"$2a$08$6YyV8YFCiVJxmZgW4GX6qeFPF.p/8Ey86Tt2A.i8vbS8JKfPtSQjy","createdAt":"2019-05-05T13:50:53.000Z","updatedAt":"2019-05-05T13:50:53.000Z"},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiQmlucyIsImVtYWlsIjoiYmluczRAaWcuY29tLmJyIiwicGFzc3dvcmRfaGFzaCI6IiQyYSQwOCQ2WXlWOFlGQ2lWSnhtWmdXNEdYNnFlRlBGLnAvOEV5ODZUdDJBLmk4dmJTOEpLZlB0U1FqeSIsImNyZWF0ZWRBdCI6IjIwMTktMDUtMDVUMTM6NTA6NTMuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMTktMDUtMDVUMTM6NTA6NTMuMDAwWiJ9LCJpYXQiOjE1NTcwNjQ4MTMsImV4cCI6MTU1NzE1MTIxM30.fg-5TWrVVAL1ebeTHDxd4s86z3cyxbWMhIk6aAVOc-o"}
-  
-- Response 401 (application/json)
-
-	- Attributes (Message401)
-  
-	- Body 
-	
-			{
-				 "message": "Senha incorreta" 
-			}
-			
-- Response 404 (application/json)
-
-	- Attributes (Message404)
-  
-	- Body 
-	
-			{
-				"message": "Usuário não encontrado" 
-			}			
 
 # Data Structures
 

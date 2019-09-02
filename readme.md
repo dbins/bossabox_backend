@@ -34,9 +34,14 @@ A documentação da API pode ser consultada na página [api.html](api.html) loca
 
 As rotas [POST]/tools/,  [PUT]/tools/:id e [DELETE]/tools/:id exigem a autenticação do usuário e o envio de um token JWT de autorização no cabeçalho da requisição
 
+
+A documentação do projeto foi feita utilizando a Blueprint API (api.md), mas também existe uma documentação feita com Swagger. Na pasta DER se encontra o Diagrama de Entidades e Relacionamento do banco de dados em vários formatos.
+
 ## Testes
 
 No terminal, a partir da raiz do projeto, digite npm run test para executar os testes da aplicação. Os testes foram feitos utilizado o Jest + Supertest
+
+Além dos testes feitos com o Jest, também foram feitos testes utilizando a biblioteca Dredd.
 
 ## DOCKER
 

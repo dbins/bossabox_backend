@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg
+PUBLIC "-//W3C//DTD SVG 1.1//EN"
+       "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="1000px" height="1000px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <line x1="52" y1="309" x2="42" y2="309" style="fill:    orange;stroke:black;stroke-width:2;"/>
+   <line x1="49" y1="58" x2="59" y2="58" style="fill:    orange;stroke:black;stroke-width:2;"/>
+   <line x1="42" y1="309" x2="49" y2="58" style="fill:    orange;stroke:    orange;stroke-width:1;"/>
+   <line x1="44.5" y1="309" x2="48.035533905933" y2="312.53553390593" style="fill:    orange;stroke:black;stroke-width:2;"/>
+   <line x1="44.5" y1="309" x2="48.035533905933" y2="305.46446609407" style="fill:    orange;stroke:black;stroke-width:2;"/>
+   <line x1="54" y1="58" x2="50.464466094067" y2="61.535533905933" style="fill:    orange;stroke:black;stroke-width:2;"/>
+   <line x1="54" y1="58" x2="50.464466094067" y2="54.464466094067" style="fill:    orange;stroke:black;stroke-width:2;"/>
+   <rect width="113" height="20" x="265" y="256" style="fill:red;stroke:black;"/>
+   <text width="113" height="20" x="270" y="270" style="fill:none;stroke:black;" font-family="Arial" font-size="16px"> sequelizemeta</text>
+   <rect width="113" height="20" x="265" y="276" style="fill:#0c0;stroke:black;"/>
+   <text width="113" height="20" x="270" y="290" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">name</text>
+   <rect width="86" height="20" x="52" y="239" style="fill:red;stroke:black;"/>
+   <text width="86" height="20" x="57" y="253" style="fill:none;stroke:black;" font-family="Arial" font-size="16px"> tags</text>
+   <rect width="86" height="20" x="52" y="259" style="fill:#0c0;stroke:black;"/>
+   <text width="86" height="20" x="57" y="273" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">id</text>
+   <rect width="86" height="20" x="52" y="279" style="fill:none;stroke:black;"/>
+   <text width="86" height="20" x="57" y="293" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">tag</text>
+   <rect width="86" height="20" x="52" y="299" style="fill:none;stroke:black;"/>
+   <text width="86" height="20" x="57" y="313" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">tool_id</text>
+   <rect width="86" height="20" x="52" y="319" style="fill:none;stroke:black;"/>
+   <text width="86" height="20" x="57" y="333" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">created_at</text>
+   <rect width="86" height="20" x="52" y="339" style="fill:none;stroke:black;"/>
+   <text width="86" height="20" x="57" y="353" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">updated_at</text>
+   <rect width="88" height="20" x="59" y="28" style="fill:red;stroke:black;"/>
+   <text width="88" height="20" x="64" y="42" style="fill:none;stroke:black;" font-family="Arial" font-size="16px"> tools</text>
+   <rect width="88" height="20" x="59" y="48" style="fill:#0c0;stroke:black;"/>
+   <text width="88" height="20" x="64" y="62" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">id</text>
+   <rect width="88" height="20" x="59" y="68" style="fill:none;stroke:black;"/>
+   <text width="88" height="20" x="64" y="82" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">title</text>
+   <rect width="88" height="20" x="59" y="88" style="fill:none;stroke:black;"/>
+   <text width="88" height="20" x="64" y="102" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">link</text>
+   <rect width="88" height="20" x="59" y="108" style="fill:none;stroke:black;"/>
+   <text width="88" height="20" x="64" y="122" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">description</text>
+   <rect width="88" height="20" x="59" y="128" style="fill:none;stroke:black;"/>
+   <text width="88" height="20" x="64" y="142" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">created_at</text>
+   <rect width="88" height="20" x="59" y="148" style="fill:none;stroke:black;"/>
+   <text width="88" height="20" x="64" y="162" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">updated_at</text>
+   <rect width="118" height="20" x="253" y="34" style="fill:red;stroke:black;"/>
+   <text width="118" height="20" x="258" y="48" style="fill:none;stroke:black;" font-family="Arial" font-size="16px"> users</text>
+   <rect width="118" height="20" x="253" y="54" style="fill:#0c0;stroke:black;"/>
+   <text width="118" height="20" x="258" y="68" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">id</text>
+   <rect width="118" height="20" x="253" y="74" style="fill:none;stroke:black;"/>
+   <text width="118" height="20" x="258" y="88" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">name</text>
+   <rect width="118" height="20" x="253" y="94" style="fill:none;stroke:black;"/>
+   <text width="118" height="20" x="258" y="108" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">email</text>
+   <rect width="118" height="20" x="253" y="114" style="fill:none;stroke:black;"/>
+   <text width="118" height="20" x="258" y="128" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">password_hash</text>
+   <rect width="118" height="20" x="253" y="134" style="fill:none;stroke:black;"/>
+   <text width="118" height="20" x="258" y="148" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">created_at</text>
+   <rect width="118" height="20" x="253" y="154" style="fill:none;stroke:black;"/>
+   <text width="118" height="20" x="258" y="168" style="fill:none;stroke:black;" font-family="Arial" font-size="16px">updated_at</text>
+</svg>

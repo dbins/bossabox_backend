@@ -4,11 +4,12 @@ const handle = require("express-async-handler");
 const routes = express.Router();
 const authMiddleware = require("./app/middlewares/auth");
 const validatorUser = require("./app/validators/User");
+const validatorLogin = require("./app/validators/Login");
 const validatorTool = require("./app/validators/Tool");
 const UserController = require("./app/controllers/UserController");
 const ToolsController = require("./app/controllers/ToolsController");
 
-routes.post("/login", validate(validatorUser), handle(UserController.login));
+routes.post("/login", validate(validatorLogin), handle(UserController.login));
 routes.post(
   "/usuario",
   validate(validatorUser),

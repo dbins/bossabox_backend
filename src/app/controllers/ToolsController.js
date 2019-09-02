@@ -61,7 +61,7 @@ class ToolsController {
           tool_id: tool_id
         });
       }
-      const resultados = await Tools.findOne({
+      const resultado = await Tools.findOne({
         where: { id: tool_id },
         include: [
           {
@@ -70,7 +70,7 @@ class ToolsController {
           }
         ]
       });
-      res.json(util.mapResult(resultados));
+      res.json(util.mapResult2(resultado));
     } else {
       return res.status(400).json({ message: "Tool já existe" });
     }
@@ -80,34 +80,39 @@ class ToolsController {
     const { title, link, description, tags } = req.body;
     const tool = await Tools.findOne({ where: { id: req.params.id } });
     if (tool) {
-      var update_tool = await Tools.update(
-        {
-          title: title,
-          link: link,
-          description: description
-        },
-        { where: { id: req.params.id } }
-      );
-      await Tags.destroy({ where: { tool_id: req.params.id } });
-      for (var x = 0; x < tags.length; x++) {
-        var item = tags[x];
-        await Tags.create({
-          tag: item,
-          tool_id: req.params.id,
-          created_at: moment().format("YYYY-MM-DD")
-        });
-      }
-      const tool = await Tools.findOne({
-        where: { id: req.params.id },
-        include: [
+      try {
+        var update_tool = await Tools.update(
           {
-            model: Tags,
-            attributes: ["tag"]
-          }
-        ]
-      });
-      const detail = util.mapResult(tool);
-      res.json({ detail, message: "Registro atualizado" });
+            title: title,
+            link: link,
+            description: description
+          },
+          { where: { id: req.params.id } }
+        );
+        await Tags.destroy({ where: { tool_id: req.params.id } });
+        for (var x = 0; x < tags.length; x++) {
+          var item = tags[x];
+          await Tags.create({
+            tag: item,
+            tool_id: req.params.id,
+            created_at: moment().format("YYYY-MM-DD")
+          });
+        }
+        const tool = await Tools.findOne({
+          where: { id: req.params.id },
+          include: [
+            {
+              model: Tags,
+              attributes: ["tag"]
+            }
+          ]
+        });
+        res.json(util.mapResult2(tool));
+      } catch (error) {
+        return res
+          .status(401)
+          .json({ message: "Houve um problema ao atualizar este registro" });
+      }
     } else {
       return res.status(400).json({ message: "ID não localizado" });
     }
@@ -135,8 +140,9 @@ class ToolsController {
       ]
     });
     if (tool) {
-      const detail = util.mapResult(tool);
-      return res.status(200).json({ detail });
+      //const detail = util.mapResult(tool);
+      //return res.status(200).json({ detail });
+      return res.status(200).json(util.mapResult2(tool));
     } else {
       return res.status(400).json({ error: "ID não localizado" });
     }

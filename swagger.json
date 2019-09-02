@@ -1,0 +1,840 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API VUTTR",
+        "version": "",
+        "description": "API do challenge de backend da BossaBox"
+    },
+    "host": "127.0.0.1:3000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/usuario": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {},
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "nome": {
+                                    "type": "string",
+                                    "description": "Nome"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "description": "E-mail do usuário, deve ser único"
+                                },
+                                "password_hash": {
+                                    "type": "string",
+                                    "description": "Senha criptografada"
+                                },
+                                "created_at": {
+                                    "type": "string",
+                                    "description": "05-05T13:50:53.000Z (string) - Data de criação"
+                                },
+                                "updated_at": {
+                                    "type": "string",
+                                    "description": "05-05T13:50:53.000Z (string) - Data de atualização"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "message": "Usuário já existe"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Criar Usuario",
+                "description": "",
+                "tags": [
+                    "Usuario"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "nome": {
+                                    "type": "string",
+                                    "description": "Nome"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "description": "E-mail do usuário, deve ser único"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "description": "Senha do usuário"
+                                }
+                            },
+                            "example": {
+                                "name": "Bins",
+                                "email": "bins4@ig.com.br",
+                                "password": "123456"
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/login": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "user": {
+                                    "id": 1,
+                                    "name": "Bins",
+                                    "email": "bins4@ig.com.br",
+                                    "password_hash": "$2a$08$6YyV8YFCiVJxmZgW4GX6qeFPF.p/8Ey86Tt2A.i8vbS8JKfPtSQjy",
+                                    "createdAt": "2019-05-05T13:50:53.000Z",
+                                    "updatedAt": "2019-05-05T13:50:53.000Z"
+                                },
+                                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiQmlucyIsImVtYWlsIjoiYmluczRAaWcuY29tLmJyIiwicGFzc3dvcmRfaGFzaCI6IiQyYSQwOCQ2WXlWOFlGQ2lWSnhtWmdXNEdYNnFlRlBGLnAvOEV5ODZUdDJBLmk4dmJTOEpLZlB0U1FqeSIsImNyZWF0ZWRBdCI6IjIwMTktMDUtMDVUMTM6NTA6NTMuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMTktMDUtMDVUMTM6NTA6NTMuMDAwWiJ9LCJpYXQiOjE1NTcwNjQ4MTMsImV4cCI6MTU1NzE1MTIxM30.fg-5TWrVVAL1ebeTHDxd4s86z3cyxbWMhIk6aAVOc-o"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "description": "ID do registro"
+                                },
+                                "nome": {
+                                    "type": "string",
+                                    "description": "Nome"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "description": "E-mail do usuário, deve ser único"
+                                },
+                                "password_hash": {
+                                    "type": "string",
+                                    "description": "Senha"
+                                },
+                                "token": {
+                                    "type": "string",
+                                    "description": "5TWrVVAL1ebeTHDxd4s86z3cyxbWMhIk6aAVOc-o (string) - Token para ser utilizado nas rotas restritas"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "message": "Senha incorreta"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "message": "Usuário não encontrado"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Faz o login do usuário, retornando um token",
+                "description": "",
+                "tags": [
+                    "Usuario"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "description": "E-mail do usuário, deve ser único"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "description": "Senha do usuário"
+                                }
+                            },
+                            "example": {
+                                "email": "bins4@ig.com.br",
+                                "password": "123456"
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/tools": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": [
+                                {
+                                    "id": 1,
+                                    "title": "Hello, world!",
+                                    "link": "Hello, world!",
+                                    "description": "Hello, world!",
+                                    "tags": [
+                                        "Hello, world!"
+                                    ]
+                                },
+                                {
+                                    "id": 2,
+                                    "title": "Hello, world!",
+                                    "link": "Hello, world!",
+                                    "description": "Hello, world!",
+                                    "tags": [
+                                        "Hello, world!",
+                                        "Hello, world!"
+                                    ]
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "summary": "Listar Tools",
+                "description": "",
+                "tags": [
+                    "Tools"
+                ],
+                "parameters": [],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "id": 1,
+                                "title": "Teste do Bins",
+                                "link": "http://www.google.com.br",
+                                "description": "Teste do Bins",
+                                "tags": [
+                                    "tag1",
+                                    "tag2",
+                                    "tag3"
+                                ]
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "description": "ID do registro"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "Nome da Tool"
+                                },
+                                "link": {
+                                    "type": "string",
+                                    "description": "Link"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Descrição"
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "description": "Array de strings com o nome das tags",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {},
+                        "examples": {
+                            "application/json": {
+                                "message": "Tool já existe"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Criar Tools",
+                "description": "",
+                "tags": [
+                    "Tools"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "Nome da Tool"
+                                },
+                                "link": {
+                                    "type": "string",
+                                    "description": "Link"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Descrição"
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "description": "Array de strings com o nome das tags"
+                                }
+                            },
+                            "example": {
+                                "title": "Teste",
+                                "link": "http://www.google.com.br",
+                                "description": "Teste do Bins",
+                                "tags": [
+                                    "tag1",
+                                    "tag2",
+                                    "tag3"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8",
+                    "application/json"
+                ]
+            }
+        },
+        "/tools/{id_tool}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {},
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "description": "ID do registro"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "Nome da Tool"
+                                },
+                                "link": {
+                                    "type": "string",
+                                    "description": "Link"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Descrição"
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "description": "Array de strings com o nome das tags",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "message": "ID não localizado"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Detalhe Tool",
+                "description": "",
+                "tags": [
+                    "Tool"
+                ],
+                "parameters": [
+                    {
+                        "name": "id_tool",
+                        "in": "path",
+                        "description": "ID da tool",
+                        "required": true,
+                        "x-example": "1",
+                        "type": "number"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {},
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "description": "ID do registro"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "Nome da Tool"
+                                },
+                                "link": {
+                                    "type": "string",
+                                    "description": "Link"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Descrição"
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "description": "Array de strings com o nome das tags",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "message": "ID não localizado"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Atualizar tool",
+                "description": "",
+                "tags": [
+                    "Tool"
+                ],
+                "parameters": [
+                    {
+                        "name": "id_tool",
+                        "in": "path",
+                        "description": "ID da tool",
+                        "required": true,
+                        "x-example": "1",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "Nome da Tool"
+                                },
+                                "link": {
+                                    "type": "string",
+                                    "description": "Link"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Descrição"
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "description": "Array de strings com o nome das tags"
+                                }
+                            },
+                            "example": {
+                                "title": "Teste atualizado",
+                                "link": "http://www.google.com.br",
+                                "description": "Teste do Bins",
+                                "tags": [
+                                    "tag1",
+                                    "tag2",
+                                    "tag3"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "message": "Registro excluído"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "message": "ID não localizado"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Excluir Tool",
+                "description": "",
+                "tags": [
+                    "Tool"
+                ],
+                "parameters": [
+                    {
+                        "name": "id_tool",
+                        "in": "path",
+                        "description": "ID da tool",
+                        "required": true,
+                        "x-example": "1",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "Sobre": {},
+        "Usuario": {
+            "type": "object",
+            "properties": {
+                "nome": {
+                    "type": "string",
+                    "description": "Nome"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "E-mail do usuário, deve ser único"
+                },
+                "password_hash": {
+                    "type": "string",
+                    "description": "Senha criptografada"
+                },
+                "created_at": {
+                    "type": "string",
+                    "description": "05-05T13:50:53.000Z (string) - Data de criação"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "description": "05-05T13:50:53.000Z (string) - Data de atualização"
+                }
+            }
+        },
+        "Login": {},
+        "Tools": {},
+        "Tool": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "Nome da Tool"
+                },
+                "link": {
+                    "type": "string",
+                    "description": "Link"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Descrição"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {},
+                    "description": "Array de strings com o nome das tags"
+                }
+            }
+        },
+        "UsuarioCadastro": {
+            "type": "object",
+            "properties": {
+                "nome": {
+                    "type": "string",
+                    "description": "Nome"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "E-mail do usuário, deve ser único"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Senha do usuário"
+                }
+            }
+        },
+        "UsuarioLogin": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "E-mail do usuário, deve ser único"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Senha do usuário"
+                }
+            }
+        },
+        "UsuarioLogado": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "ID do registro"
+                },
+                "nome": {
+                    "type": "string",
+                    "description": "Nome"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "E-mail do usuário, deve ser único"
+                },
+                "password_hash": {
+                    "type": "string",
+                    "description": "Senha"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "5TWrVVAL1ebeTHDxd4s86z3cyxbWMhIk6aAVOc-o (string) - Token para ser utilizado nas rotas restritas"
+                }
+            }
+        },
+        "MessageExiste": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Retorno da operação"
+                }
+            }
+        },
+        "MessageID": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Retorno da operação"
+                }
+            }
+        },
+        "Message403": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Retorno da operação"
+                }
+            }
+        },
+        "Message404": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Retorno da operação"
+                }
+            }
+        },
+        "MessageExcluido": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Retorno da operação"
+                }
+            }
+        },
+        "Message401": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Retorno da operação"
+                }
+            }
+        },
+        "ToolResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "ID do registro"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "Nome da Tool"
+                },
+                "link": {
+                    "type": "string",
+                    "description": "Link"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Descrição"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {},
+                    "description": "Array de strings com o nome das tags"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {},
+    "tags": [
+        {
+            "name": "API"
+        },
+        {
+            "name": "Usuario"
+        },
+        {
+            "name": "Tools"
+        },
+        {
+            "name": "Tool"
+        }
+    ]
+}
