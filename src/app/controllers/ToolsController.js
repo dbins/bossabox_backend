@@ -109,6 +109,7 @@ class ToolsController {
         });
         res.json(util.mapResult2(tool));
       } catch (error) {
+		console.log(error);
         return res
           .status(401)
           .json({ message: "Houve um problema ao atualizar este registro" });

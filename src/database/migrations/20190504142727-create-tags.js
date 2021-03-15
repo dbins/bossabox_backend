@@ -9,6 +9,14 @@ module.exports = {
       Example:
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
+	
+	//tool_id: {
+    //    type: Sequelize.INTEGER,
+    //    references: { model: "tools", key: "id" },
+    //    onUpdate: "CASCADE",
+    //    onDelete: "CASCADE",
+    //    allowNull: false
+    //  },
 
     return queryInterface.createTable("Tags", {
       id: {
@@ -23,9 +31,6 @@ module.exports = {
       },
       tool_id: {
         type: Sequelize.INTEGER,
-        references: { model: "tools", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
         allowNull: false
       },
       created_at: {

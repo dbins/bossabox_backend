@@ -1,32 +1,44 @@
 version: "3.4"
 volumes:
-  data:
+  data_bossabox:
 services:
-  db:
+  db_bossabox:
     image: mysql:5.6
     ports:
       - "3306:3306"
     expose:
       - 3306
     volumes:
-      - data:/var/lib/mysql
+      - data_bossabox:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_DATABASE=bossabox
-  app:
+  app_bossabox:
     build: ./
-    image: app
+    image: app_bossabox
     links:
-      - db
+      - db_bossabox
     depends_on:
-      - db
+      - db_bossabox
     environment:
-      - DB_HOST=db
+      - DB_HOST=db_bossabox
       - DB_USERNAME=root
       - DB_PASSWORD=123456
       - DB_DATABASE=bossabox
       - DB_PORT=3306
-      - WAIT_HOSTS=db:3306
-
+      - WAIT_HOSTS=db_bossabox:3306
     ports:
       - 3000:3000
+  phpmyadmin_bossabox:
+    image: phpmyadmin/phpmyadmin:latest
+    links:
+      - db_bossabox
+    ports:
+      - 80:80
+    environment:
+      - PMA_ARBITRARY=1    
+  testes_bossabox:
+    image: app_bossabox
+    links:
+      - app_bossabox
+    command: npm run test 
