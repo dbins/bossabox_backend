@@ -17,6 +17,10 @@ https://github.com/dbins/bossabox_frontend
 - npm install
 - npm start
 
+## Vídeo
+
+[![VUTTR](images/backend_video.png)](http://www.dbins.com.br/videos/bossabox-backend.mp4) 
+
 
 ## Rotas da API
 
